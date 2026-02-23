@@ -1,25 +1,63 @@
 # Cursor Plans Quick Pick
 
-This extension adds a command that lists plan files from `~/.cursor/plans` and opens the selected file in the current Cursor/VS Code window.
+A VS Code / Cursor extension that gives you fast access to your Cursor plan files. Run a single command to browse every `.plan.md` file in `~/.cursor/plans`, grouped by date, and open the one you need.
 
-## Command
+## Features
 
-- `Cursor Plans: List Plans` (`cursorPlans.listPlans`)
+- **Quick Pick list** of all plan files in `~/.cursor/plans`, sorted newest-first.
+- **Date-grouped separators** so you can visually scan plans by day.
+- **Smart title extraction** — displays the YAML frontmatter `name` field, the first markdown heading, or the filename as a fallback.
+- **Incremental caching** — watches the plans directory for changes and applies diffs without a full rescan, so the list opens instantly even with many files.
+- **Graceful error handling** — shows a friendly message if the plans directory doesn't exist yet.
 
-## Behavior
+## Requirements
 
-- Reads plan files from `~/.cursor/plans` with the `.plan.md` suffix.
-- Sorts entries newest-to-oldest using file modification time.
-- Groups entries by local date using Quick Pick separators.
-- Opens the selected file with `openTextDocument` + `showTextDocument`.
+- **Cursor** or **VS Code** `^1.95.0`
+- **Node.js** (for building from source)
 
-## Caching and incremental updates
+## Getting Started
 
-- Maintains an in-memory path map and sorted record list after first load.
-- Reuses cached Quick Pick results on repeated runs when no file changes are detected.
-- Tracks add/update/remove events with `fs.watch` and applies per-file diffs without full resort.
-- Falls back to full rebuild when watcher events are incomplete or watcher errors occur.
+```bash
+# Install dependencies
+npm install
 
-## Missing folder behavior
+# Compile TypeScript
+npm run compile
+```
 
-- If `~/.cursor/plans` does not exist, the command shows an informational message and exits gracefully.
+To run during development, press **F5** (or use the *Run Extension* launch configuration) to open an Extension Development Host with the extension loaded.
+
+## Usage
+
+1. Open the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`).
+2. Run **Cursor Plans: List Plans**.
+3. Pick a plan from the list — it opens in your editor.
+
+## How It Works
+
+The extension reads every `*.plan.md` file from `~/.cursor/plans` on first invocation, builds an in-memory index sorted by modification time, and caches the Quick Pick items. A file-system watcher (`fs.watch`) tracks adds, updates, and deletes so subsequent invocations reflect changes without a full rebuild. If the watcher reports an error, the cache falls back to a complete rescan.
+
+## Development
+
+| Script | Description |
+|---|---|
+| `npm run compile` | One-shot TypeScript compilation |
+| `npm run watch` | Continuous compilation in watch mode |
+
+The compiled output goes to `out/`. Source maps are generated for debugging.
+
+## Project Structure
+
+```
+src/
+  extension.ts   — activation, command registration, PlanIndexCache
+  types.ts       — PlanRecord and PlanQuickPickItem interfaces
+out/             — compiled JavaScript (generated)
+.vscode/
+  launch.json    — debug configuration
+  tasks.json     — build tasks
+```
+
+## License
+
+[MIT](LICENSE)
