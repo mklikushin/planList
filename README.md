@@ -2,6 +2,14 @@
 
 A VS Code / Cursor extension that gives you fast access to your Cursor plan files. Run a single command to browse every `.plan.md` file in `~/.cursor/plans`, grouped by date, and open the one you need.
 
+## Why This Exists
+
+Cursor's plan mode is my daily driver, but plans are surprisingly hard to find once you create them. They're not surfaced in the UI, and there's no easy way to browse or reopen them. I kept losing plans and wasting tokens recreating context that already existed somewhere on my machine. Turns out, all plans are stored in `~/.cursor/plans` as markdown files, but opening them is a pain.
+
+This extension is a scrappy solution. It gives you instant visibility into all your plans and lets you open them with a quick dropdown, then use Cursor to execute as usual.
+
+![Quick Pick panel showing plan files grouped by date](Screenshot%202026-02-23%20at%202.13.27%20PM.png)
+
 ## Features
 
 - **Quick Pick list** of all plan files in `~/.cursor/plans`, sorted newest-first.
