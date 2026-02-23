@@ -1,0 +1,36 @@
+{
+  "name": "cursor-plans-quick-pick",
+  "displayName": "Cursor Plans Quick Pick",
+  "description": "Quickly list and open plan files from ~/.cursor/plans.",
+  "version": "0.0.1",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:cursorPlans.listPlans"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cursorPlans.listPlans",
+        "title": "List Plans",
+        "category": "Cursor Plans"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.30",
+    "@types/vscode": "^1.95.0",
+    "typescript": "^5.8.2"
+  }
+}
