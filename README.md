@@ -17,6 +17,20 @@ A VS Code / Cursor extension that gives you fast access to your Cursor plan file
 
 ## Getting Started
 
+### Quick Install (Pre-built)
+
+A pre-built extension package is included in this repository:
+
+1. In Cursor, open the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`).
+2. Run **Extensions: Install from VSIX...**.
+3. Select `cursor-plans-quick-pick-0.0.1.vsix` from this project directory.
+
+The extension will be installed and ready to use.
+
+### Development Build
+
+If you want to build from source:
+
 ```bash
 # Install dependencies
 npm install
