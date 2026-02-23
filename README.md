@@ -8,7 +8,7 @@ Cursor's plan mode is my daily driver, but plans are surprisingly hard to find o
 
 This extension is a scrappy solution. It gives you instant visibility into all your plans and lets you open them with a quick dropdown, then use Cursor to execute as usual.
 
-![Quick Pick panel showing plan files grouped by date](Screenshot%202026-02-23%20at%202.13.27%20PM.png)
+![Quick Pick panel showing plan files grouped by date](plan-selector-demo.png)
 
 ## Features
 
